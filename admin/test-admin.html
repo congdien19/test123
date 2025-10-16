@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Admin Account</title>
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <h1>Test Admin Account</h1>
+    <button onclick="testAdminAccount()">Test Admin Account</button>
+    <div id="result"></div>
+
+    <script>
+        function testAdminAccount() {
+            try {
+                // Check if admin account exists
+                const users = localStorage.getItem('users');
+                const usersArray = users ? JSON.parse(users) : [];
+                const adminUser = usersArray.find(user => user.email === 'admin@example.com' && user.isAdmin === true);
+                
+                if (adminUser) {
+                    document.getElementById('result').innerHTML = 
+                        '<p style="color: green;">Admin account found!</p>' +
+                        '<p>Email: ' + adminUser.email + '</p>' +
+                        '<p>Name: ' + adminUser.name + '</p>' +
+                        '<p>Is Admin: ' + adminUser.isAdmin + '</p>';
+                } else {
+                    document.getElementById('result').innerHTML = 
+                        '<p style="color: red;">Admin account not found!</p>';
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>

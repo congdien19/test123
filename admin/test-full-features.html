@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Full Admin Features</title>
+    <script src="../js/auth.js"></script>
+    <script src="../js/site-config.js"></script>
+</head>
+<body>
+    <h1>Test Full Admin Features</h1>
+    
+    <div>
+        <h2>Current Admin Status</h2>
+        <button onclick="checkAdminStatus()">Check Admin Status</button>
+        <div id="admin-status"></div>
+    </div>
+    
+    <div>
+        <h2>Test Data Storage</h2>
+        <button onclick="testDataStorage()">Test Data Storage</button>
+        <div id="data-storage"></div>
+    </div>
+    
+    <div>
+        <h2>Test Site Configuration</h2>
+        <button onclick="testSiteConfig()">Test Site Configuration</button>
+        <div id="site-config"></div>
+    </div>
+    
+    <div>
+        <h2>Reset Test Data</h2>
+        <button onclick="resetTestData()">Reset Test Data</button>
+        <div id="reset-status"></div>
+    </div>
+
+    <script>
+        function checkAdminStatus() {
+            try {
+                const currentUser = UserManager.getCurrentUser();
+                const isAdmin = UserManager.isAdmin();
+                
+                document.getElementById('admin-status').innerHTML = 
+                    '<p><strong>Current User:</strong> ' + (currentUser ? currentUser.name : 'None') + '</p>' +
+                    '<p><strong>Is Admin:</strong> ' + isAdmin + '</p>';
+            } catch (error) {
+                document.getElementById('admin-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function testDataStorage() {
+            try {
+                // Test anime storage
+                let anime = localStorage.getItem('anime');
+                let animeArray = anime ? JSON.parse(anime) : [];
+                
+                // Test site design storage
+                const logoUrl = localStorage.getItem('siteLogo');
+                const primaryColor = localStorage.getItem('primaryColor');
+                const secondaryColor = localStorage.getItem('secondaryColor');
+                const footerText = localStorage.getItem('footerText');
+                
+                document.getElementById('data-storage').innerHTML = 
+                    '<p><strong>Anime Count:</strong> ' + animeArray.length + '</p>' +
+                    '<p><strong>Logo URL:</strong> ' + (logoUrl || 'Not set') + '</p>' +
+                    '<p><strong>Primary Color:</strong> ' + (primaryColor || 'Not set') + '</p>' +
+                    '<p><strong>Secondary Color:</strong> ' + (secondaryColor || 'Not set') + '</p>' +
+                    '<p><strong>Footer Text:</strong> ' + (footerText || 'Not set') + '</p>';
+            } catch (error) {
+                document.getElementById('data-storage').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function testSiteConfig() {
+            try {
+                // This would normally be tested on the actual site pages
+                document.getElementById('site-config').innerHTML = 
+                    '<p>Site configuration is applied automatically on page load.</p>' +
+                    '<p>Check the main site pages to see the applied configurations.</p>';
+            } catch (error) {
+                document.getElementById('site-config').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function resetTestData() {
+            try {
+                // Reset only test-related data, not the actual admin account
+                localStorage.removeItem('anime');
+                localStorage.removeItem('siteLogo');
+                localStorage.removeItem('primaryColor');
+                localStorage.removeItem('secondaryColor');
+                localStorage.removeItem('footerText');
+                
+                document.getElementById('reset-status').innerHTML = 
+                    '<p style="color: green;">Test data has been reset successfully.</p>';
+            } catch (error) {
+                document.getElementById('reset-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>

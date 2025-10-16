@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chào mừng đến với AnimeVerse</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #1a0033, #120033, #090021);
+      color: white; overflow: hidden;
+    }
+
+    /* SECTION 1: intro anime style */
+    section {
+      height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative; text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff77ff, #6bc9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff99ff; }
+      to { text-shadow: 0 0 30px #7cf6ff; }
+    }
+
+    p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .btns {
+      margin-top: 2rem;
+      display: flex; gap: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .start {
+      background: linear-gradient(90deg, #ff77ff, #6bc9ff);
+      color: white;
+      box-shadow: 0 0 15px rgba(255,255,255,0.4);
+    }
+    .start:hover {
+      transform: scale(1.05);
+    }
+
+    .learn {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: white;
+    }
+    .learn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* SECTION 2: pastel style background */
+    .pastel {
+      background: linear-gradient(to top right, #fbc2eb, #a6c1ee);
+      color: #333;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* SECTION 3: action effect */
+    .action {
+      background: radial-gradient(circle at center, #0d0d0d 0%, #000000 100%);
+      overflow: hidden;
+    }
+    .action::before {
+      content: "";
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(from 0deg, #ff0055, #ff7700, #ffee00, #00ffcc, #0077ff, #ff00aa, #ff0055);
+      animation: rotate 6s linear infinite;
+      opacity: 0.2;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .character {
+      position: absolute;
+      bottom: 0;
+      width: 400px;
+      opacity: 0.9;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Particle System */
+    .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+    
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: particleFall linear infinite;
+    }
+    
+    @keyframes particleFall {
+        to {
+            transform: translateY(100vh) rotate(360deg);
+        }
+    }
+    
+    /* Glowing Orbs */
+    .glowing-orbs {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+    }
+    
+    .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(30px);
+        opacity: 0.3;
+        animation: orbFloat 15s infinite ease-in-out;
+    }
+    
+    .orb:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        background: #e53637;
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+    
+    .orb:nth-child(2) {
+        width: 200px;
+        height: 200px;
+        background: #302b63;
+        bottom: 10%;
+        right: 10%;
+        animation-delay: 2s;
+    }
+    
+    .orb:nth-child(3) {
+        width: 150px;
+        height: 150px;
+        background: #0f0c29;
+        top: 50%;
+        left: 50%;
+        animation-delay: 4s;
+    }
+    
+    @keyframes orbFloat {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(50px, 50px); }
+        50% { transform: translate(100px, 0); }
+        75% { transform: translate(50px, -50px); }
+    }
+    
+    /* Animated Text */
+    .animated-text {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+    }
+    
+    .animated-text::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: textShine 2s infinite;
+    }
+    
+    @keyframes textShine {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+    
+    /* Scroll Indicator */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.7);
+        animation: bounce 2s infinite;
+        cursor: pointer;
+    }
+    
+    .scroll-indicator span {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .scroll-indicator i {
+        font-size: 1.5rem;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+        40% { transform: translateX(-50%) translateY(-20px); }
+        60% { transform: translateX(-50%) translateY(-10px); }
+    }
+    
+    /* Featured Anime Section */
+    .featured-anime-section {
+        padding: 80px 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+        color: #fff;
+        font-size: 2.5rem;
+    }
+    
+    .section-title p {
+        color: #ccc;
+        font-size: 1.2rem;
+        margin-top: 15px;
+    }
+    
+    .product__item {
+        margin-bottom: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    .product__item__pic {
+        height: 300px;
+        background-size: cover;
+        position: relative;
+    }
+    
+    .ep {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #e53637;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    
+    .view {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    
+    .product__item__text {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .product__item__text ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 15px 0;
+    }
+    
+    .product__item__text li {
+        display: inline-block;
+        margin: 0 5px;
+        background: rgba(229, 54, 55, 0.2);
+        color: #e53637;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    
+    .product__item__text h5 {
+        margin: 0;
+    }
+    
+    .product__item__text h5 a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INTRO ANIME -->
+  <section>
+    <h1>ようこそ — AnimeVerse</h1>
+    <p>Thế giới dành cho những ai yêu anime, nơi cảm xúc bùng nổ 🎬</p>
+    <div class="btns">
+      <button class="start">Bắt đầu ngay</button>
+      <button class="learn" onclick="document.getElementById('pastel').scrollIntoView({behavior:'smooth'})">Khám phá</button>
+    </div>
+  </section>
+
+  <!-- PASTEL STYLE -->
+  <section class="pastel" id="pastel">
+    <h1>🌸 Chào mừng đến thế giới đáng yêu 🌸</h1>
+    <p>Hòa mình vào bầu không khí dễ thương, như bước vào thế giới Ghibli 💫</p>
+  </section>
+
+  <!-- ACTION STYLE -->
+  <section class="action">
+    <h1>⚔️ Chiến đấu vì giấc mơ của bạn ⚔️</h1>
+    <p>Hãy để đam mê bùng nổ — hành trình anime bắt đầu từ đây!</p>
+    <img src="https://i.ibb.co/5x3rYq8/anime-fighter.png" alt="anime character" class="character">
+  </section>
+
+  <!-- Welcome Section Begin -->
+  <section class="welcome-section">
+      <div class="welcome-content">
+          <div class="welcome-logo">
+              <i class="fa fa-play-circle"></i>
+          </div>
+          <h1 class="animated-text">Chào Mừng Đến Với AnimeHub</h1>
+          <p>Khám phá trải nghiệm anime tuyệt vời với bộ sưu tập phong phú các series, phim và nội dung độc quyền. Tham gia cộng đồng những người yêu anime và đắm chìm trong thế giới giải trí vô tận.</p>
+          
+          <div class="btn-group">
+              <a href="signup.html" class="welcome-btn">Tạo Tài Khoản</a>
+              <a href="login.html" class="welcome-btn secondary">Đăng Nhập</a>
+          </div>
+          
+          <div class="features">
+              <div class="feature">
+                  <i class="fa fa-film"></i>
+                  <h3>Hàng Ngàn Tựa</h3>
+                  <p>Từ cổ điển đến mới nhất</p>
+              </div>
+              <div class="feature">
+                  <i class="fa fa-tv"></i>
+                  <h3>Chất Lượng HD</h3>
+                  <p>Hình ảnh sắc nét</p>
+              </div>
+              <div class="feature">
+                  <i class="fa fa-users"></i>
+                  <h3>Cộng Đồng</h3>
+                  <p>Kết nối với người yêu anime</p>
+              </div>
+              <div class="feature">
+                  <i class="fa fa-mobile"></i>
+                  <h3>Mọi Thiết Bị</h3>
+                  <p>Xem ở mọi nơi</p>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+          <span>Kéo xuống để khám phá</span>
+          <i class="fa fa-chevron-down"></i>
+      </div>
+  </section>
+  <!-- Welcome Section End -->
+  
+  <!-- Featured Anime Section Begin -->
+  <section class="featured-anime-section" style="padding: 80px 0; background: rgba(0, 0, 0, 0.8); display: none;">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="section-title" style="text-align: center; margin-bottom: 50px;">
+                      <h2 style="color: #fff; font-size: 2.5rem;">Anime Nổi Bật</h2>
+                      <p style="color: #ccc; font-size: 1.2rem; margin-top: 15px;">Khám phá những series được yêu thích nhất</p>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-4 col-md-6 col-sm-6">
+                  <div class="product__item" style="margin-bottom: 30px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease;">
+                      <div class="product__item__pic set-bg" style="height: 300px; background-image: url('img/popular/popular-1.jpg'); background-size: cover;" data-setbg="img/popular/popular-1.jpg">
+                          <div class="ep" style="position: absolute; top: 10px; left: 10px; background: #e53637; color: white; padding: 5px 10px; border-radius: 5px;">18 / 18</div>
+                          <div class="view" style="position: absolute; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 5px;"><i class="fa fa-eye"></i> 9141</div>
+                      </div>
+                      <div class="product__item__text" style="padding: 20px; text-align: center;">
+                          <ul style="list-style: none; padding: 0; margin: 0 0 15px 0;">
+                              <li style="display: inline-block; margin: 0 5px; background: rgba(229, 54, 55, 0.2); color: #e53637; padding: 5px 10px; border-radius: 5px;">Hoạt Động</li>
+                              <li style="display: inline-block; margin: 0 5px; background: rgba(229, 54, 55, 0.2); color: #e53637; padding: 5px 10px; border-radius: 5px;">Phim</li>
+                          </ul>
+                          <h5 style="margin: 0;"><a href="anime-details.html" style="color: #fff; text-decoration: none;">Sen to Chihiro no Kamikakushi</a></h5>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6">
+                  <div class="product__item" style="margin-bottom: 30px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease;">
+                      <div class="product__item__pic set-bg" style="height: 300px; background-image: url('img/popular/popular-2.jpg'); background-size: cover;" data-setbg="img/popular/popular-2.jpg">
+                          <div class="ep" style="position: absolute; top: 10px; left: 10px; background: #e53637; color: white; padding: 5px 10px; border-radius: 5px;">18 / 18</div>
+                          <div class="view" style="position: absolute; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 5px;"><i class="fa fa-eye"></i> 9141</div>
+                      </div>
+                      <div class="product__item__text" style="padding: 20px; text-align: center;">
+                          <ul style="list-style: none; padding: 0; margin: 0 0 15px 0;">
+                              <li style="display: inline-block; margin: 0 5px; background: rgba(229, 54, 55, 0.2); color: #e53637; padding: 5px 10px; border-radius: 5px;">Hoạt Động</li>
+                              <li style="display: inline-block; margin: 0 5px; background: rgba(229, 54, 55, 0.2); color: #e53637; padding: 5px 10px; border-radius: 5px;">Phim</li>
+                          </ul>
+                          <h5 style="margin: 0;"><a href="anime-details.html" style="color: #fff; text-decoration: none;">Kizumonogatari III: Reiket su-hen</a></h5>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-6">
+                  <div class="product__item" style="margin-bottom: 30px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease;">
+                      <div class="product__item__pic set-bg" style="height: 300px; background-image: url('img/popular/popular-3.jpg'); background-size: cover;" data-setbg="img/popular/popular-3.jpg">
+                          <div class="ep" style="position: absolute; top: 10px; left: 10px; background: #e53637; color: white; padding: 5px 10px; border-radius: 5px;">18 / 18</div>
+                          <div class="view" style="position: absolute; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 5px;"><i class="fa fa-eye"></i> 9141</div>
+                      </div>
+                      <div class="product__item__text" style="padding: 20px; text-align: center;">
+                          <ul style="list-style: none; padding: 0; margin: 0 0 15px 0;">
+                              <li style="display: inline-block; margin: 0 5px; background: rgba(229, 54, 55, 0.2); color: #e53637; padding: 5px 10px; border-radius: 5px;">Hoạt Động</li>
+                              <li style="display: inline-block; margin: 0 5px; background: rgba(229, 54, 55, 0.2); color: #e53637; padding: 5px 10px; border-radius: 5px;">Phim</li>
+                          </ul>
+                          <h5 style="margin: 0;"><a href="anime-details.html" style="color: #fff; text-decoration: none;">Shirogane Tamashii hen Kouhan sen</a></h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- Featured Anime Section End -->
+
+  <script>
+        // Create floating elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingElements = document.getElementById('floatingElements');
+            
+            // Create 15 floating elements
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                // Random size
+                const size = Math.random() * 100 + 20;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                
+                // Random position
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                element.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                element.style.animationDelay = `${delay}s`;
+                
+                floatingElements.appendChild(element);
+            }
+            
+            // Create particles
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random animation duration
+                const duration = Math.random() * 10 + 5;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Add interactive mouse move effect
+            document.addEventListener('mousemove', function(e) {
+                const orbs = document.querySelectorAll('.orb');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                orbs.forEach((orb, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX - 0.5) * speed * 20;
+                    const y = (mouseY - 0.5) * speed * 20;
+                    orb.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+            
+            // Language and theme controls
+            const languageButtons = document.querySelectorAll('[data-lang]');
+            const themeButtons = document.querySelectorAll('[data-theme]');
+            
+            // Language switching
+            languageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    
+                    // Update active button
+                    languageButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // In a real implementation, this would change the language
+                    if (lang === 'en') {
+                        // Update content to English
+                        document.querySelector('title').textContent = 'Welcome to AnimeHub';
+                        document.querySelector('h1').textContent = 'Welcome to AnimeHub';
+                        document.querySelector('p').textContent = 'Discover an amazing anime experience with a rich collection of series, movies and exclusive content. Join the anime lover community and immerse yourself in an endless world of entertainment.';
+                        document.querySelector('[data-lang="en"]').textContent = 'EN';
+                        document.querySelector('[data-lang="vi"]').textContent = 'VI';
+                        document.querySelector('.welcome-btn:first-child').textContent = 'Create Account';
+                        document.querySelector('.welcome-btn.secondary').textContent = 'Login';
+                        document.querySelectorAll('.feature h3')[0].textContent = 'Thousands of Titles';
+                        document.querySelectorAll('.feature p')[0].textContent = 'From classics to latest';
+                        document.querySelectorAll('.feature h3')[1].textContent = 'HD Quality';
+                        document.querySelectorAll('.feature p')[1].textContent = 'Sharp visuals';
+                        document.querySelectorAll('.feature h3')[2].textContent = 'Community';
+                        document.querySelectorAll('.feature p')[2].textContent = 'Connect with anime lovers';
+                        document.querySelectorAll('.feature h3')[3].textContent = 'Any Device';
+                        document.querySelectorAll('.feature p')[3].textContent = 'Watch anywhere';
+                        document.querySelectorAll('.control-label')[0].textContent = 'Theme:';
+                        document.querySelectorAll('.control-label')[1].textContent = 'Language:';
+                        document.querySelector('.scroll-indicator span').textContent = 'Scroll down to explore';
+                        document.querySelector('.section-title h2').textContent = 'Featured Anime';
+                        document.querySelector('.section-title p').textContent = 'Discover the most loved series';
+                    } else {
+                        // Update content to Vietnamese
+                        document.querySelector('title').textContent = 'Chào Mừng Đến Với AnimeHub';
+                        document.querySelector('h1').textContent = 'Chào Mừng Đến Với AnimeHub';
+                        document.querySelector('p').textContent = 'Khám phá trải nghiệm anime tuyệt vời với bộ sưu tập phong phú các series, phim và nội dung độc quyền. Tham gia cộng đồng những người yêu anime và đắm chìm trong thế giới giải trí vô tận.';
+                        document.querySelector('[data-lang="en"]').textContent = 'EN';
+                        document.querySelector('[data-lang="vi"]').textContent = 'VI';
+                        document.querySelector('.welcome-btn:first-child').textContent = 'Tạo Tài Khoản';
+                        document.querySelector('.welcome-btn.secondary').textContent = 'Đăng Nhập';
+                        document.querySelectorAll('.feature h3')[0].textContent = 'Hàng Ngàn Tựa';
+                        document.querySelectorAll('.feature p')[0].textContent = 'Từ cổ điển đến mới nhất';
+                        document.querySelectorAll('.feature h3')[1].textContent = 'Chất Lượng HD';
+                        document.querySelectorAll('.feature p')[1].textContent = 'Hình ảnh sắc nét';
+                        document.querySelectorAll('.feature h3')[2].textContent = 'Cộng Đồng';
+                        document.querySelectorAll('.feature p')[2].textContent = 'Kết nối với người yêu anime';
+                        document.querySelectorAll('.feature h3')[3].textContent = 'Mọi Thiết Bị';
+                        document.querySelectorAll('.feature p')[3].textContent = 'Xem ở mọi nơi';
+                        document.querySelectorAll('.control-label')[0].textContent = 'Giao diện:';
+                        document.querySelectorAll('.control-label')[1].textContent = 'Ngôn ngữ:';
+                        document.querySelector('.scroll-indicator span').textContent = 'Kéo xuống để khám phá';
+                        document.querySelector('.section-title h2').textContent = 'Anime Nổi Bật';
+                        document.querySelector('.section-title p').textContent = 'Khám phá những series được yêu thích nhất';
+                    }
+                });
+            });
+            
+            // Theme switching
+            themeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    
+                    // Update active button
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Apply theme
+                    if (theme === 'light') {
+                        document.body.style.background = '#f0f0f0';
+                        document.querySelector('.welcome-content').style.background = 'rgba(255, 255, 255, 0.9)';
+                        document.querySelector('.welcome-content').style.color = '#333';
+                        document.querySelectorAll('.feature').forEach(feature => {
+                            feature.style.background = 'rgba(255, 255, 255, 0.7)';
+                            feature.style.color = '#333';
+                        });
+                        document.querySelectorAll('.feature h3').forEach(h3 => {
+                            h3.style.color = '#333';
+                        });
+                        document.querySelectorAll('.feature p').forEach(p => {
+                            p.style.color = '#666';
+                        });
+                        document.querySelectorAll('.control-group').forEach(group => {
+                            group.style.background = 'rgba(255, 255, 255, 0.7)';
+                            group.style.color = '#333';
+                        });
+                        document.querySelectorAll('.control-label').forEach(label => {
+                            label.style.color = '#333';
+                        });
+                    } else {
+                        document.body.style.background = '#000';
+                        document.querySelector('.welcome-content').style.background = 'rgba(0, 0, 0, 0.7)';
+                        document.querySelector('.welcome-content').style.color = '#fff';
+                        document.querySelectorAll('.feature').forEach(feature => {
+                            feature.style.background = 'rgba(255, 255, 255, 0.1)';
+                            feature.style.color = '#fff';
+                        });
+                        document.querySelectorAll('.feature h3').forEach(h3 => {
+                            h3.style.color = '#fff';
+                        });
+                        document.querySelectorAll('.feature p').forEach(p => {
+                            p.style.color = '#ccc';
+                        });
+                        document.querySelectorAll('.control-group').forEach(group => {
+                            group.style.background = 'rgba(0, 0, 0, 0.5)';
+                            group.style.color = '#fff';
+                        });
+                        document.querySelectorAll('.control-label').forEach(label => {
+                            label.style.color = '#fff';
+                        });
+                    }
+                });
+            });
+            
+            // Add scroll functionality to scroll indicator
+            document.querySelector('.scroll-indicator').addEventListener('click', function() {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Show featured anime section when scrolling down
+            window.addEventListener('scroll', function() {
+                const featuredSection = document.querySelector('.featured-anime-section');
+                if (window.scrollY > 100) {
+                    featuredSection.style.display = 'block';
+                }
+            });
+            
+            // Add hover effect to anime cards
+            const animeCards = document.querySelectorAll('.product__item');
+            animeCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

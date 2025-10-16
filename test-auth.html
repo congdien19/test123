@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Authentication</title>
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <h1>Test Authentication System</h1>
+    
+    <div>
+        <h2>Current User Status</h2>
+        <button onclick="checkUserStatus()">Check User Status</button>
+        <div id="user-status"></div>
+    </div>
+    
+    <div>
+        <h2>Test Authentication Check</h2>
+        <button onclick="testAuthCheck()">Test Authentication Check</button>
+        <div id="auth-check"></div>
+    </div>
+    
+    <div>
+        <h2>Simulate Login</h2>
+        <button onclick="simulateLogin()">Simulate Login</button>
+        <div id="login-status"></div>
+    </div>
+    
+    <div>
+        <h2>Clear Current User</h2>
+        <button onclick="clearUser()">Clear Current User</button>
+        <div id="clear-status"></div>
+    </div>
+
+    <script>
+        function checkUserStatus() {
+            try {
+                const currentUser = UserManager.getCurrentUser();
+                
+                document.getElementById('user-status').innerHTML = 
+                    '<p><strong>Current User:</strong> ' + (currentUser ? currentUser.name : 'None') + '</p>' +
+                    '<p><strong>User ID:</strong> ' + (currentUser ? currentUser.id : 'N/A') + '</p>' +
+                    '<p><strong>Email:</strong> ' + (currentUser ? currentUser.email : 'N/A') + '</p>' +
+                    '<p><strong>Is Admin:</strong> ' + (currentUser && currentUser.isAdmin ? 'Yes' : 'No') + '</p>';
+            } catch (error) {
+                document.getElementById('user-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function testAuthCheck() {
+            try {
+                // This will redirect if not authenticated
+                checkAuthentication();
+                document.getElementById('auth-check').innerHTML = 
+                    '<p style="color: green;">Authentication check completed. If you see this, you are authenticated.</p>';
+            } catch (error) {
+                document.getElementById('auth-check').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function simulateLogin() {
+            try {
+                // Simulate a regular user login
+                const regularUser = {
+                    id: "987654321",
+                    email: "user@example.com",
+                    name: "Regular User",
+                    password: "password123",
+                    isAdmin: false
+                };
+                
+                UserManager.setCurrentUser(regularUser);
+                
+                document.getElementById('login-status').innerHTML = 
+                    '<p style="color: green;">Regular user simulated successfully.</p>';
+            } catch (error) {
+                document.getElementById('login-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function clearUser() {
+            try {
+                UserManager.clearCurrentUser();
+                document.getElementById('clear-status').innerHTML = 
+                    '<p style="color: green;">Current user cleared successfully.</p>';
+            } catch (error) {
+                document.getElementById('clear-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>

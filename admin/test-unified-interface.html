@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Unified Admin Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Kiểm Tra Giao Diện Quản Trị Thống Nhất</h1>
+        
+        <div class="test-result info">
+            <h3>Thông Tin Kiểm Tra</h3>
+            <p>Trang này kiểm tra xem giao diện quản trị mới đã được thiết lập đúng cách chưa.</p>
+        </div>
+        
+        <div class="test-result" id="dashboard-test">
+            <h3>1. Kiểm Tra Trang Dashboard</h3>
+            <p>Trạng thái: <span id="dashboard-status">Đang kiểm tra...</span></p>
+        </div>
+        
+        <div class="test-result" id="css-test">
+            <h3>2. Kiểm Tra File CSS</h3>
+            <p>Trạng thái: <span id="css-status">Đang kiểm tra...</span></p>
+        </div>
+        
+        <div class="test-result" id="js-test">
+            <h3>3. Kiểm Tra File JavaScript</h3>
+            <p>Trạng thái: <span id="js-status">Đang kiểm tra...</span></p>
+        </div>
+        
+        <a href="dashboard.html">Truy Cập Bảng Điều Khiển</a>
+        <a href="../index.html">Quay Về Trang Chủ</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test dashboard.html existence
+            fetch('dashboard.html')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('dashboard-status').textContent = 'Đã tìm thấy - OK';
+                        document.getElementById('dashboard-test').className = 'test-result success';
+                    } else {
+                        throw new Error('Không tìm thấy');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('dashboard-status').textContent = 'Lỗi: ' + error.message;
+                    document.getElementById('dashboard-test').className = 'test-result error';
+                });
+            
+            // Test CSS file existence
+            fetch('css/admin-dashboard.css')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('css-status').textContent = 'Đã tìm thấy - OK';
+                        document.getElementById('css-test').className = 'test-result success';
+                    } else {
+                        throw new Error('Không tìm thấy');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('css-status').textContent = 'Lỗi: ' + error.message;
+                    document.getElementById('css-test').className = 'test-result error';
+                });
+            
+            // Test JS file existence
+            fetch('js/admin-dashboard.js')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('js-status').textContent = 'Đã tìm thấy - OK';
+                        document.getElementById('js-test').className = 'test-result success';
+                    } else {
+                        throw new Error('Không tìm thấy');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('js-status').textContent = 'Lỗi: ' + error.message;
+                    document.getElementById('js-test').className = 'test-result error';
+                });
+        });
+    </script>
+</body>
+</html>

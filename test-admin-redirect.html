@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Admin Redirect</title>
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <h1>Test Admin Redirect Behavior</h1>
+    
+    <div>
+        <h2>Current User Status</h2>
+        <button onclick="checkUserStatus()">Check User Status</button>
+        <div id="user-status"></div>
+    </div>
+    
+    <div>
+        <h2>Simulate Admin Login</h2>
+        <button onclick="simulateAdminLogin()">Simulate Admin Login</button>
+        <div id="login-status"></div>
+    </div>
+    
+    <div>
+        <h2>Clear Current User</h2>
+        <button onclick="clearUser()">Clear Current User</button>
+        <div id="clear-status"></div>
+    </div>
+
+    <script>
+        function checkUserStatus() {
+            try {
+                const currentUser = UserManager.getCurrentUser();
+                
+                document.getElementById('user-status').innerHTML = 
+                    '<p><strong>Current User:</strong> ' + (currentUser ? currentUser.name : 'None') + '</p>' +
+                    '<p><strong>User ID:</strong> ' + (currentUser ? currentUser.id : 'N/A') + '</p>' +
+                    '<p><strong>Email:</strong> ' + (currentUser ? currentUser.email : 'N/A') + '</p>' +
+                    '<p><strong>Is Admin:</strong> ' + (currentUser && currentUser.isAdmin ? 'Yes' : 'No') + '</p>';
+            } catch (error) {
+                document.getElementById('user-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function simulateAdminLogin() {
+            try {
+                // Simulate admin login
+                const adminUser = {
+                    id: "123456789",
+                    email: "admin@example.com",
+                    name: "Quản Trị Viên",
+                    password: "admin123",
+                    isAdmin: true
+                };
+                
+                UserManager.setCurrentUser(adminUser);
+                
+                document.getElementById('login-status').innerHTML = 
+                    '<p style="color: green;">Admin user simulated successfully.</p>' +
+                    '<p>After login, admin users will now be redirected to the main website instead of the admin dashboard.</p>';
+            } catch (error) {
+                document.getElementById('login-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function clearUser() {
+            try {
+                UserManager.clearCurrentUser();
+                document.getElementById('clear-status').innerHTML = 
+                    '<p style="color: green;">Current user cleared successfully.</p>';
+            } catch (error) {
+                document.getElementById('clear-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>

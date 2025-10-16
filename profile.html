@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime | Hồ Sơ</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/admin-styles.css" type="text/css">
+    <style>
+        .profile-section {
+            background: #f7f7f7;
+            padding: 50px 0;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .profile-info {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .profile-info label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+        .btn-logout {
+            background: #e53637;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn-logout:hover {
+            background: #d72d2e;
+        }
+        .admin-section {
+            background: #e8f4fc;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .admin-section h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .admin-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .admin-action-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .admin-action-btn:hover {
+            background: #2980b9;
+        }
+        .user-role {
+            background: #27ae60;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .admin-role {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="./index.html">
+                            <img src="img/logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="header__nav">
+                        <nav class="header__menu mobile-menu">
+                            <ul>
+                                <li><a href="./index.html">Trang Chủ</a></li>
+                                <li><a href="./categories.html">Thể Loại <span class="arrow_carrot-down"></span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="./categories.html">Thể Loại</a></li>
+                                        <li><a href="./anime-details.html">Chi Tiết Anime</a></li>
+                                        <li><a href="./anime-watching.html">Xem Anime</a></li>
+                                        <li><a href="./blog-details.html">Chi Tiết Blog</a></li>
+                                        <li><a href="./signup.html">Đăng Ký</a></li>
+                                        <li><a href="./login.html">Đăng Nhập</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="./blog.html">Blog</a></li>
+                                <li><a href="#">Liên Hệ</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="header__right">
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <a href="./login.html"><span class="icon_profile"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Normal Breadcrumb Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="normal__breadcrumb__text">
+                        <h2>Hồ Sơ</h2>
+                        <p>Xem và quản lý thông tin tài khoản của bạn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Normal Breadcrumb End -->
+
+    <!-- Profile Section Begin -->
+    <section class="profile-section spad">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2>Hồ Sơ Người Dùng <span id="user-role-badge"></span></h2>
+                            <p>Quản lý thông tin tài khoản của bạn</p>
+                        </div>
+                        
+                        <div class="profile-info">
+                            <label>Tên:</label>
+                            <span id="user-name">-</span>
+                        </div>
+                        
+                        <div class="profile-info">
+                            <label>Email:</label>
+                            <span id="user-email">-</span>
+                        </div>
+                        
+                        <div class="profile-info">
+                            <label>Thành Viên Từ:</label>
+                            <span id="member-since">-</span>
+                        </div>
+                        
+                        <div id="admin-section" style="display: none;">
+                            <div class="admin-section">
+                                <h3>Bảng Điều Khiển Quản Trị</h3>
+                                <p>Là quản trị viên, bạn có quyền truy cập vào các tính năng quản lý nâng cao.</p>
+                                
+                                <div class="admin-actions">
+                                    <a href="./admin/dashboard.html" class="admin-action-btn">
+                                        <i class="fa fa-dashboard"></i> Bảng Điều Khiển
+                                    </a>
+                                    <a href="./admin/dashboard.html#content" class="admin-action-btn">
+                                        <i class="fa fa-film"></i> Quản Lý Nội Dung
+                                    </a>
+                                    <a href="./admin/dashboard.html#users" class="admin-action-btn">
+                                        <i class="fa fa-users"></i> Quản Lý Người Dùng
+                                    </a>
+                                    <a href="./admin/dashboard.html#site-design" class="admin-action-btn">
+                                        <i class="fa fa-paint-brush"></i> Thiết Kế Trang Web
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-logout" id="logout-btn">Đăng Xuất</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Profile Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="page-up">
+            <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer__logo">
+                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="footer__nav">
+                        <ul>
+                            <li class="active"><a href="./index.html">Trang Chủ</a></li>
+                            <li><a href="./categories.html">Thể Loại</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="#">Liên Hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+
+                  </div>
+              </div>
+          </div>
+      </footer>
+      <!-- Footer Section End -->
+
+      <!-- Search model Begin -->
+      <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Tìm kiếm ở đây.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/site-config.js"></script>
+    <script src="js/language-theme-manager.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            checkAuthentication();
+            
+            // Check if user is logged in
+            const currentUser = UserManager.getCurrentUser();
+            
+            if (!currentUser) {
+                // Redirect to login page if not logged in
+                window.location.href = './login.html';
+                return;
+            }
+            
+            // Display user information
+            document.getElementById('user-name').textContent = currentUser.name;
+            document.getElementById('user-email').textContent = currentUser.email;
+            document.getElementById('member-since').textContent = new Date(parseInt(currentUser.id)).toLocaleDateString();
+            
+            // Show user role badge
+            const roleBadge = document.getElementById('user-role-badge');
+            if (currentUser.isAdmin) {
+                roleBadge.innerHTML = '<span class="admin-role">QUẢN TRỊ</span>';
+                // Show admin section
+                document.getElementById('admin-section').style.display = 'block';
+            } else {
+                roleBadge.innerHTML = '<span class="user-role">NGƯỜI DÙNG</span>';
+            }
+            
+            // Add logout event listener
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                logout();
+            });
+            
+            // Update navigation
+            updateNavigation();
+        });
+    </script>
+
+</body>
+
+</html>

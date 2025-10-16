@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Admin Access</title>
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <h1>Test Admin Access</h1>
+    
+    <div>
+        <h2>Current User Status</h2>
+        <button onclick="checkUserStatus()">Check User Status</button>
+        <div id="user-status"></div>
+    </div>
+    
+    <div>
+        <h2>Test Admin Navigation Update</h2>
+        <button onclick="testNavUpdate()">Test Navigation Update</button>
+        <div id="nav-status"></div>
+    </div>
+    
+    <div>
+        <h2>Simulate Admin Login</h2>
+        <button onclick="simulateAdminLogin()">Simulate Admin Login</button>
+        <div id="login-status"></div>
+    </div>
+
+    <script>
+        function checkUserStatus() {
+            try {
+                const currentUser = UserManager.getCurrentUser();
+                const isAdmin = UserManager.isAdmin();
+                
+                document.getElementById('user-status').innerHTML = 
+                    '<p><strong>Current User:</strong> ' + (currentUser ? currentUser.name : 'None') + '</p>' +
+                    '<p><strong>User ID:</strong> ' + (currentUser ? currentUser.id : 'N/A') + '</p>' +
+                    '<p><strong>Email:</strong> ' + (currentUser ? currentUser.email : 'N/A') + '</p>' +
+                    '<p><strong>Is Admin:</strong> ' + isAdmin + '</p>';
+            } catch (error) {
+                document.getElementById('user-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function testNavUpdate() {
+            try {
+                updateNavigation();
+                document.getElementById('nav-status').innerHTML = 
+                    '<p style="color: green;">Navigation updated successfully. Check the header on this page.</p>';
+            } catch (error) {
+                document.getElementById('nav-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        function simulateAdminLogin() {
+            try {
+                // Simulate admin login by setting current user
+                const adminUser = {
+                    id: "123456789",
+                    email: "admin@example.com",
+                    name: "Administrator",
+                    password: "admin123",
+                    isAdmin: true
+                };
+                
+                UserManager.setCurrentUser(adminUser);
+                updateNavigation();
+                
+                document.getElementById('login-status').innerHTML = 
+                    '<p style="color: green;">Admin user simulated and navigation updated.</p>' +
+                    '<p><a href="../profile.html">Go to Profile Page</a></p>';
+            } catch (error) {
+                document.getElementById('login-status').innerHTML = 
+                    '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Admin Dashboard">
+    <meta name="keywords" content="Anime, admin, dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AnimeHub | Bảng Điều Khiển Quản Trị</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/admin-styles.css" type="text/css">
+    <link rel="stylesheet" href="css/admin-dashboard.css" type="text/css">
+    
+    <style>
+        /* Additional styles for admin dashboard */
+        .admin-header {
+            background: #0b0c2a;
+            padding: 15px 0;
+            border-bottom: 1px solid #e53637;
+        }
+        
+        .admin-header .logo img {
+            max-height: 50px;
+        }
+        
+        .admin-nav {
+            background: #1a1c3d;
+            padding: 10px 0;
+        }
+        
+        .admin-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .admin-nav ul li {
+            margin-right: 20px;
+        }
+        
+        .admin-nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-nav ul li a:hover,
+        .admin-nav ul li a.active {
+            background: #e53637;
+        }
+        
+        .admin-content {
+            padding: 30px 0;
+        }
+        
+        .admin-card {
+            background: #1a1c3d;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .admin-card-header {
+            border-bottom: 1px solid #e53637;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-card-header h3 {
+            color: #ffffff;
+            font-family: "Oswald", sans-serif;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        
+        .admin-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .admin-form label {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .admin-form input,
+        .admin-form textarea,
+        .admin-form select {
+            width: 100%;
+            padding: 10px 15px;
+            background: #0b0c2a;
+            border: 1px solid #3d3d5c;
+            border-radius: 4px;
+            color: #ffffff;
+            font-family: "Mulish", sans-serif;
+        }
+        
+        .admin-form input:focus,
+        .admin-form textarea:focus,
+        .admin-form select:focus {
+            border-color: #e53637;
+            outline: none;
+        }
+        
+        .admin-btn {
+            background: #e53637;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Oswald", sans-serif;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            background: #c02f2f;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #0b0c2a;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .admin-table th,
+        .admin-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #3d3d5c;
+        }
+        
+        .admin-table th {
+            background: #1a1c3d;
+            color: #e53637;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .admin-table tr:hover {
+            background: #1a1c3d;
+        }
+        
+        .admin-table-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .admin-table-actions .btn-edit,
+        .admin-table-actions .btn-delete {
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .admin-table-actions .btn-edit {
+            background: #3498db;
+            color: white;
+        }
+        
+        .admin-table-actions .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .admin-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .admin-stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: #1a1c3d;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .admin-stat-card .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #e53637;
+            margin: 10px 0;
+        }
+        
+        .admin-stat-card .label {
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        /* Design preview styles */
+        .design-preview {
+            background: #0b0c2a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #3d3d5c;
+        }
+        
+        .preview-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .preview-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .preview-card {
+            flex: 1;
+            min-width: 200px;
+            background: #1a1c3d;
+            border-radius: 6px;
+            padding: 15px;
+        }
+        
+        .preview-card h4 {
+            color: #e53637;
+            border-bottom: 1px solid #3d3d5c;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-nav ul {
+                flex-direction: column;
+            }
+            
+            .admin-nav ul li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .admin-stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-4">
+                    <div class="logo">
+                        <a href="../index.html">
+                            <img src="../img/logo.png" alt="AnimeHub Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4 text-center">
+                    <h2 style="color: #ffffff; margin: 0;">BẢNG ĐIỀU KHIỂN QUẢN TRỊ</h2>
+                </div>
+                <div class="col-lg-3 col-md-4 text-right">
+                    <a href="../index.html" class="admin-btn">Quay về trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#dashboard" class="active" data-section="dashboard">Tổng Quan</a></li>
+                <li><a href="#content" data-section="content">Quản Lý Nội Dung</a></li>
+                <li><a href="#users" data-section="users">Quản Lý Người Dùng</a></li>
+                <li><a href="#slider" data-section="slider">Quản Lý Slider</a></li>
+                <li><a href="#site-design" data-section="site-design">Thiết Kế Trang Web</a></li>
+                <li><a href="#settings" data-section="settings">Cài Đặt</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Admin Content -->
+    <section class="admin-content">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="admin-section active">
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="icon">
+                            <i class="fa fa-film fa-2x" style="color: #e53637;"></i>
+                        </div>
+                        <div class="number" id="total-anime">0</div>
+                        <div class="label">Anime</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="icon">
+                            <i class="fa fa-users fa-2x" style="color: #e53637;"></i>
+                        </div>
+                        <div class="number" id="total-users">0</div>
+                        <div class="label">Người Dùng</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="icon">
+                            <i class="fa fa-eye fa-2x" style="color: #e53637;"></i>
+                        </div>
+                        <div class="number" id="total-views">0</div>
+                        <div class="label">Lượt Xem</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="icon">
+                            <i class="fa fa-comments fa-2x" style="color: #e53637;"></i>
+                        </div>
+                        <div class="number" id="total-comments">0</div>
+                        <div class="label">Bình Luận</div>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Hoạt Động Gần Đây</h3>
+                    </div>
+                    <div class="admin-recent-activity">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Thời Gian</th>
+                                    <th>Hoạt Động</th>
+                                    <th>Người Dùng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-05-15 14:30</td>
+                                    <td>Thêm anime mới: "Attack on Titan"</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>2023-05-14 10:15</td>
+                                    <td>Cập nhật thiết kế trang web</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>2023-05-13 16:45</td>
+                                    <td>Xóa người dùng: user@example.com</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>2023-05-12 09:20</td>
+                                    <td>Thêm anime mới: "Demon Slayer"</td>
+                                    <td>Admin</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Management Section -->
+            <div id="content" class="admin-section">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Quản Lý Anime</h3>
+                    </div>
+                    <div class="admin-form">
+                        <form id="anime-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="anime-title">Tên Anime</label>
+                                        <input type="text" id="anime-title" name="title" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="anime-category">Thể Loại</label>
+                                        <select id="anime-category" name="category" required>
+                                            <option value="">Chọn thể loại</option>
+                                            <option value="Hành Động">Hành Động</option>
+                                            <option value="Phiêu Lưu">Phiêu Lưu</option>
+                                            <option value="Hài Hước">Hài Hước</option>
+                                            <option value="Kinh Dị">Kinh Dị</option>
+                                            <option value="Tình Cảm">Tình Cảm</option>
+                                            <option value="Học Đường">Học Đường</option>
+                                            <option value="Fantasy">Fantasy</option>
+                                            <option value="Siêu Nhiên">Siêu Nhiên</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="anime-episodes">Số Tập</label>
+                                        <input type="number" id="anime-episodes" name="episodes" min="1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="anime-image">Ảnh Bìa</label>
+                                        <input type="text" id="anime-image" name="image" placeholder="URL ảnh bìa">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="anime-description">Mô Tả</label>
+                                <textarea id="anime-description" name="description" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="admin-btn">Thêm Anime</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Danh Sách Anime</h3>
+                    </div>
+                    <div class="admin-anime-list">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Tên Anime</th>
+                                    <th>Thể Loại</th>
+                                    <th>Số Tập</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="anime-list">
+                                <!-- Anime items will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Management Section -->
+            <div id="users" class="admin-section">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Thêm Người Dùng Mới</h3>
+                    </div>
+                    <div class="admin-form">
+                        <form id="user-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user-name">Tên</label>
+                                        <input type="text" id="user-name" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user-email">Email</label>
+                                        <input type="email" id="user-email" name="email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user-password">Mật Khẩu</label>
+                                        <input type="password" id="user-password" name="password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user-role">Vai Trò</label>
+                                        <select id="user-role" name="role" required>
+                                            <option value="user">Người dùng</option>
+                                            <option value="admin">Quản trị viên</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="admin-btn">Thêm Người Dùng</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Danh Sách Người Dùng</h3>
+                    </div>
+                    <div class="admin-user-list">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Tên</th>
+                                    <th>Email</th>
+                                    <th>Vai Trò</th>
+                                    <th>Ngày Tham Gia</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="user-list">
+                                <!-- User items will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slider Management Section -->
+            <div id="slider" class="admin-section">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Thêm Slider Mới</h3>
+                    </div>
+                    <div class="admin-form">
+                        <form id="slider-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="slider-title">Tiêu Đề</label>
+                                        <input type="text" id="slider-title" name="title" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="slider-category">Thể Loại</label>
+                                        <input type="text" id="slider-category" name="category" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="slider-description">Mô Tả</label>
+                                <textarea id="slider-description" name="description" rows="3"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="slider-image">Ảnh Slider</label>
+                                        <input type="text" id="slider-image" name="image" placeholder="URL ảnh slider" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="slider-link">Liên Kết</label>
+                                        <input type="text" id="slider-link" name="link" placeholder="Liên kết khi click">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="admin-btn">Thêm Slider</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Danh Sách Slider</h3>
+                    </div>
+                    <div class="admin-slider-list">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Tiêu Đề</th>
+                                    <th>Thể Loại</th>
+                                    <th>Ảnh</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="slider-list">
+                                <!-- Slider items will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Site Design Section -->
+            <div id="site-design" class="admin-section">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Thiết Kế Trang Web</h3>
+                    </div>
+                    <div class="admin-form">
+                        <form id="design-form">
+                            <div class="form-group">
+                                <label for="site-logo">Logo Trang Web</label>
+                                <input type="text" id="site-logo" name="logo" placeholder="URL logo">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="primary-color">Màu Chính</label>
+                                        <input type="color" id="primary-color" name="primaryColor" value="#e53637">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="secondary-color">Màu Phụ</label>
+                                        <input type="color" id="secondary-color" name="secondaryColor" value="#0b0c2a">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="footer-text">Nội Dung Footer</label>
+                                <textarea id="footer-text" name="footerText" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="admin-btn">Lưu Thiết Kế</button>
+                        </form>
+                        
+                        <!-- Design Preview -->
+                        <div class="design-preview">
+                            <div class="preview-header">
+                                <h3>Xem Trước Thiết Kế</h3>
+                                <p>Các thay đổi sẽ được áp dụng ngay khi bạn lưu</p>
+                            </div>
+                            <div class="preview-content">
+                                <div class="preview-card">
+                                    <h4>Nút Chính</h4>
+                                    <button class="admin-btn" style="margin-bottom: 10px;">Nút Ví Dụ</button>
+                                    <p>Đây là cách nút chính sẽ trông như thế nào</p>
+                                </div>
+                                <div class="preview-card">
+                                    <h4>Màu Chủ Đạo</h4>
+                                    <div style="height: 50px; background: var(--primary-color, #e53637); border-radius: 4px; margin-bottom: 10px;"></div>
+                                    <p>Màu chính của trang web</p>
+                                </div>
+                                <div class="preview-card">
+                                    <h4>Màu Phụ</h4>
+                                    <div style="height: 50px; background: var(--secondary-color, #0b0c2a); border-radius: 4px; margin-bottom: 10px;"></div>
+                                    <p>Màu nền và phụ của trang web</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Section -->
+            <div id="settings" class="admin-section">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Cài Đặt Hệ Thống</h3>
+                    </div>
+                    <div class="admin-form">
+                        <form id="settings-form">
+                            <div class="form-group">
+                                <label for="site-title">Tiêu Đề Trang Web</label>
+                                <input type="text" id="site-title" name="siteTitle" value="AnimeHub">
+                            </div>
+                            <div class="form-group">
+                                <label for="site-description">Mô Tả Trang Web</label>
+                                <textarea id="site-description" name="siteDescription" rows="3">Trang web xem anime trực tuyến chất lượng cao</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="maintenance-mode" name="maintenanceMode"> 
+                                    Bật chế độ bảo trì
+                                </label>
+                            </div>
+                            <button type="submit" class="admin-btn">Lưu Cài Đặt</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Js Plugins -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+    <script>
+        // Navigation handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Section navigation
+            const navLinks = document.querySelectorAll('.admin-nav a');
+            const sections = document.querySelectorAll('.admin-section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and sections
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const sectionId = this.getAttribute('href').substring(1);
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+            
+            // Initialize dashboard
+            initializeDashboard();
+            
+            // Add real-time preview for design settings
+            const primaryColorInput = document.getElementById('primary-color');
+            const secondaryColorInput = document.getElementById('secondary-color');
+            
+            if (primaryColorInput) {
+                primaryColorInput.addEventListener('input', function() {
+                    document.documentElement.style.setProperty('--primary-color', this.value);
+                });
+            }
+            
+            if (secondaryColorInput) {
+                secondaryColorInput.addEventListener('input', function() {
+                    document.documentElement.style.setProperty('--secondary-color', this.value);
+                });
+            }
+        });
+        
+        function initializeDashboard() {
+            // Load stats
+            document.getElementById('total-anime').textContent = '24';
+            document.getElementById('total-users').textContent = '1,248';
+            document.getElementById('total-views').textContent = '45,621';
+            document.getElementById('total-comments').textContent = '892';
+            
+            // Load sample anime data
+            const animeList = [
+                { title: 'Attack on Titan', category: 'Hành Động', episodes: '87' },
+                { title: 'Demon Slayer', category: 'Phiêu Lưu', episodes: '44' },
+                { title: 'My Hero Academia', category: 'Hành Động', episodes: '138' },
+                { title: 'One Piece', category: 'Phiêu Lưu', episodes: '1000+' }
+            ];
+            
+            const animeListElement = document.getElementById('anime-list');
+            animeList.forEach(anime => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${anime.title}</td>
+                    <td>${anime.category}</td>
+                    <td>${anime.episodes}</td>
+                    <td class="admin-table-actions">
+                        <a href="#" class="btn-edit">Sửa</a>
+                        <a href="#" class="btn-delete">Xóa</a>
+                    </td>
+                `;
+                animeListElement.appendChild(row);
+            });
+            
+            // Load sample user data
+            const userList = [
+                { name: 'Nguyễn Văn A', email: 'nguyenvana@example.com', role: 'Người dùng', joinDate: '2023-01-15' },
+                { name: 'Trần Thị B', email: 'tranthib@example.com', role: 'Người dùng', joinDate: '2023-02-20' },
+                { name: 'Lê Văn C', email: 'levanc@example.com', role: 'Quản trị', joinDate: '2022-11-10' },
+                { name: 'Phạm Thị D', email: 'phamthid@example.com', role: 'Người dùng', joinDate: '2023-03-05' }
+            ];
+            
+            const userListElement = document.getElementById('user-list');
+            userList.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>${user.joinDate}</td>
+                    <td class="admin-table-actions">
+                        <a href="#" class="btn-edit">Sửa</a>
+                        <a href="#" class="btn-delete">Xóa</a>
+                    </td>
+                `;
+                userListElement.appendChild(row);
+            });
+            
+            // Load sample slider data
+            const sliderList = [
+                { title: 'Fate / Stay Night: Unlimited Blade Works', category: 'Phiêu Lưu', image: 'img/hero/hero-1.jpg' },
+                { title: 'Attack on Titan: Final Season', category: 'Hành Động', image: 'img/hero/hero-2.jpg' },
+                { title: 'Demon Slayer: Entertainment District Arc', category: 'Siêu Nhiên', image: 'img/hero/hero-3.jpg' }
+            ];
+            
+            const sliderListElement = document.getElementById('slider-list');
+            sliderList.forEach(slider => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${slider.title}</td>
+                    <td>${slider.category}</td>
+                    <td><img src="${slider.image}" alt="Slider Image" style="width: 50px; height: auto;"></td>
+                    <td class="admin-table-actions">
+                        <a href="#" class="btn-edit">Sửa</a>
+                        <a href="#" class="btn-delete">Xóa</a>
+                    </td>
+                `;
+                sliderListElement.appendChild(row);
+            });
+        }
+    </script>
+</body>
+
+</html>

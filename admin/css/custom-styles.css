@@ -1,0 +1,11 @@
+/* Custom styles for the Anime Admin Dashboard */
+
+/* Add any custom styles here that are specific to the anime project */
+
+.anime-logo {
+    background-color: #e53637;
+}
+
+.anime-card {
+    border-left-color: #e53637 !important;
+}
